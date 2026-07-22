@@ -29,12 +29,12 @@ class TwoFactorController extends Controller
         $user = Auth::user();
 
         if (!$user->mfa_enabled) {
-            return redirect()->intended('/');
+            return redirect()->intended('/dashboard');
         }
 
         if ($this->twoFactor->verify($user, $request->code)) {
             session(['two_factor_verified' => true]);
-            return redirect()->intended('/');
+            return redirect()->intended('/dashboard');
         }
 
         return back()->withErrors(['code' => 'Invalid or expired code. Please try again.']);
