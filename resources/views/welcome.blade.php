@@ -1,4 +1,4 @@
-<![CDATA[<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
 <head>
   <meta charset="utf-8" />
@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ asset('assets/css/animations.css') }}" />
   <style>
     /* ========================================
        Chat HUB Landing Page — Design System
@@ -79,10 +80,11 @@
       font-size: 14px;
       font-weight: 800;
       letter-spacing: -.2px;
-      transition: transform var(--ease), box-shadow var(--ease), background var(--ease);
+      transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms ease, background var(--ease);
       cursor: pointer;
       text-decoration: none;
       white-space: nowrap;
+      will-change: transform;
     }
     .btn:hover { transform: translateY(-2px); }
     .btn:active { transform: scale(.97); }
@@ -331,11 +333,12 @@
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
       padding: 36px 28px;
-      transition: transform var(--ease), box-shadow var(--ease);
+      transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms ease;
+      will-change: transform;
     }
     .feature-card:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 18px 40px rgba(30, 41, 59, .12);
     }
     .feature-icon {
       width: 56px;
@@ -376,11 +379,12 @@
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
       position: relative;
-      transition: transform var(--ease), box-shadow var(--ease);
+      transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms ease;
+      will-change: transform;
     }
     .step-card:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 18px 40px rgba(30, 41, 59, .12);
     }
     .step-number {
       width: 56px;
@@ -507,11 +511,12 @@
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
       padding: 32px 28px;
-      transition: transform var(--ease), box-shadow var(--ease);
+      transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms ease;
+      will-change: transform;
     }
     .testimonial-card:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 18px 40px rgba(30, 41, 59, .12);
     }
     .testimonial-stars {
       display: flex;
@@ -570,10 +575,10 @@
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
       overflow: hidden;
-      transition: box-shadow var(--ease);
+      transition: box-shadow 220ms ease;
     }
     .faq-item:hover {
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 12px 34px rgba(30, 41, 59, .08);
     }
     .faq-question {
       width: 100%;
@@ -836,20 +841,20 @@
   </header>
 
   <!-- ========== HERO ========== -->
-  <section class="hero" id="hero">
+  <section class="hero stagger" id="hero">
     <div class="container hero-content">
-      <div class="hero-badge">
+      <div class="hero-badge fade-up">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
         Now available — Chat HUB v1.0
       </div>
-      <h1 class="hero-title">
+      <h1 class="hero-title fade-up">
         Real‑time messaging<br /><span>for your entire team</span>
       </h1>
-      <p class="hero-desc">
+      <p class="hero-desc fade-up">
         Chat HUB brings your team together with instant messaging, secure channels,
         and powerful collaboration tools — all in one beautifully designed platform.
       </p>
-      <div class="hero-actions">
+      <div class="hero-actions fade-up">
         @auth
           <a href="{{ url('/dashboard') }}" class="btn btn-primary">Go to Dashboard</a>
         @else
@@ -857,7 +862,7 @@
           <a href="#features" class="btn btn-outline">Learn More</a>
         @endauth
       </div>
-      <div class="hero-stats">
+      <div class="hero-stats fade-up">
         <div class="hero-stat">
           <div class="hero-stat-num">10K+</div>
           <div class="hero-stat-label">Active Users</div>
@@ -875,7 +880,7 @@
   </section>
 
   <!-- ========== FEATURES ========== -->
-  <section class="section features" id="features">
+  <section class="section features stagger" id="features">
     <div class="container">
       <h2 class="section-title">Everything your team needs</h2>
       <p class="section-subtitle">
@@ -929,7 +934,7 @@
   </section>
 
   <!-- ========== HOW IT WORKS ========== -->
-  <section class="section how-it-works" id="how-it-works">
+  <section class="section how-it-works stagger" id="how-it-works">
     <div class="container">
       <h2 class="section-title">How It Works</h2>
       <p class="section-subtitle">
@@ -965,7 +970,7 @@
   </section>
 
   <!-- ========== ABOUT ========== -->
-  <section class="section about" id="about">
+  <section class="section about stagger" id="about">
     <div class="container">
       <div class="about-grid">
         <div>
@@ -1031,7 +1036,7 @@
   </section>
 
   <!-- ========== TESTIMONIALS ========== -->
-  <section class="section testimonials" id="testimonials">
+  <section class="section testimonials stagger" id="testimonials">
     <div class="container">
       <h2 class="section-title">What our users say</h2>
       <p class="section-subtitle">
@@ -1103,7 +1108,7 @@
   </section>
 
   <!-- ========== FAQ ========== -->
-  <section class="section faq" id="faq">
+  <section class="section faq stagger" id="faq">
     <div class="container">
       <h2 class="section-title">Frequently Asked Questions</h2>
       <p class="section-subtitle">
@@ -1181,7 +1186,7 @@
   </section>
 
   <!-- ========== CTA ========== -->
-  <section class="cta" id="contact">
+  <section class="cta stagger" id="contact">
     <div class="container">
       <div class="cta-card">
         <h2>Ready to get started?</h2>
@@ -1293,6 +1298,6 @@
       }
     }
   </script>
-
+  <script src="{{ asset('assets/js/animations.js') }}"></script>
 </body>
-</html>]]>
+</html>
