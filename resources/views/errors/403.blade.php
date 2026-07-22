@@ -16,7 +16,7 @@
     <p style="color: var(--soft-text); font-size: 14px; max-width: 400px; margin: 0 auto 32px; line-height: 1.6;">
         Sorry, you don't have permission to access this page. Please contact your administrator if you believe this is an error.
     </p>
-    <a href="{{ route('login') }}" class="btn btn-primary" style="width: 100%; max-width: 300px; display: inline-block;">
+    <a href="{{ route('login') }}" class="btn btn-primary" style="width: 100%; max-width: 300px; display: inline-flex; justify-content: center;">
         Back to Dashboard
     </a>
 </div>

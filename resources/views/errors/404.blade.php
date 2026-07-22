@@ -16,7 +16,7 @@
     <p style="color: var(--soft-text); font-size: 14px; max-width: 400px; margin: 0 auto 32px; line-height: 1.6;">
         The page you are looking for doesn't exist or has been moved. Please check the URL or navigate back to the dashboard.
     </p>
-    <a href="{{ route('login') }}" class="btn btn-primary" style="width: 100%; max-width: 300px; display: inline-block;">
+    <a href="{{ route('login') }}" class="btn btn-primary" style="width: 100%; max-width: 300px; display: inline-flex; justify-content: center;">
         Back to Dashboard
     </a>
 </div>

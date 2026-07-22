@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<![CDATA[<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
 <head>
   <meta charset="utf-8" />
@@ -10,8 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     /* ========================================
-       Chat HUB Home Page — Design System
-       Matches auth.css variables & styling
+       Chat HUB Landing Page — Design System
        ======================================== */
 
     :root {
@@ -53,6 +52,7 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
     a { text-decoration: none; color: inherit; }
@@ -81,6 +81,8 @@
       letter-spacing: -.2px;
       transition: transform var(--ease), box-shadow var(--ease), background var(--ease);
       cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
     }
     .btn:hover { transform: translateY(-2px); }
     .btn:active { transform: scale(.97); }
@@ -97,9 +99,7 @@
       color: var(--primary);
       border: 2px solid var(--primary);
     }
-    .btn-outline:hover {
-      background: var(--primary-soft);
-    }
+    .btn-outline:hover { background: var(--primary-soft); }
 
     .btn-white {
       background: #fff;
@@ -121,7 +121,7 @@
       padding: 90px 0;
     }
     .section-title {
-      font-size: 36px;
+      font-size: clamp(28px, 4vw, 40px);
       font-weight: 900;
       letter-spacing: -1px;
       text-align: center;
@@ -148,6 +148,7 @@
       z-index: 100;
       background: rgba(244,247,255,.85);
       backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
       transition: background var(--ease);
     }
@@ -165,6 +166,7 @@
       font-weight: 900;
       letter-spacing: -.6px;
       color: var(--text);
+      flex-shrink: 0;
     }
     .header-logo .logo-icon {
       width: 40px;
@@ -175,6 +177,7 @@
       display: grid;
       place-items: center;
       font-size: 18px;
+      flex-shrink: 0;
     }
     .header-nav {
       display: flex;
@@ -192,6 +195,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-shrink: 0;
     }
     .hamburger {
       display: none;
@@ -223,6 +227,8 @@
       gap: 16px;
       box-shadow: var(--shadow-sm);
       z-index: 99;
+      max-height: calc(100vh - 72px);
+      overflow-y: auto;
     }
     .mobile-nav.open { display: flex; }
     .mobile-nav a {
@@ -270,7 +276,7 @@
       margin-bottom: 24px;
     }
     .hero-title {
-      font-size: clamp(36px, 6vw, 64px);
+      font-size: clamp(32px, 5.5vw, 60px);
       font-weight: 900;
       letter-spacing: -2px;
       line-height: 1.1;
@@ -278,7 +284,7 @@
     }
     .hero-title span { color: var(--primary); }
     .hero-desc {
-      font-size: 18px;
+      font-size: clamp(16px, 2vw, 18px);
       color: var(--soft-text);
       max-width: 580px;
       margin: 0 auto 36px;
@@ -300,7 +306,7 @@
     }
     .hero-stat { text-align: center; }
     .hero-stat-num {
-      font-size: 32px;
+      font-size: clamp(26px, 3vw, 34px);
       font-weight: 900;
       color: var(--primary);
     }
@@ -340,6 +346,7 @@
       display: grid;
       place-items: center;
       margin-bottom: 20px;
+      flex-shrink: 0;
     }
     .feature-card h3 {
       font-size: 20px;
@@ -350,6 +357,55 @@
       font-size: 14px;
       color: var(--soft-text);
       line-height: 1.7;
+    }
+
+    /* ========================================
+       HOW IT WORKS
+       ======================================== */
+    .how-it-works { background: var(--bg); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      counter-reset: step;
+    }
+    .step-card {
+      text-align: center;
+      padding: 40px 28px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      position: relative;
+      transition: transform var(--ease), box-shadow var(--ease);
+    }
+    .step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-sm);
+    }
+    .step-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 22px;
+      font-weight: 900;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 20px;
+    }
+    .step-card h3 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .step-card p {
+      font-size: 14px;
+      color: var(--soft-text);
+      line-height: 1.7;
+    }
+    .step-connector {
+      display: none;
     }
 
     /* ========================================
@@ -374,13 +430,13 @@
       display: grid;
       place-items: center;
       color: var(--primary);
-      font-size: 80px;
+      font-size: clamp(48px, 6vw, 80px);
       font-weight: 900;
       letter-spacing: -3px;
       border: 1px solid var(--line);
     }
     .about h2 {
-      font-size: 36px;
+      font-size: clamp(26px, 3.5vw, 36px);
       font-weight: 900;
       letter-spacing: -1px;
       margin-bottom: 18px;
@@ -421,12 +477,12 @@
     .highlights .section-subtitle { color: rgba(255,255,255,.7); }
     .highlights-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 40px;
       margin-top: 48px;
     }
     .highlight-item .num {
-      font-size: 48px;
+      font-size: clamp(36px, 4vw, 48px);
       font-weight: 900;
       letter-spacing: -2px;
     }
@@ -435,6 +491,128 @@
       opacity: .75;
       margin-top: 6px;
       font-weight: 600;
+    }
+
+    /* ========================================
+       TESTIMONIALS
+       ======================================== */
+    .testimonials { background: var(--surface); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .testimonial-card {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: transform var(--ease), box-shadow var(--ease);
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-sm);
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+      color: #f6b83d;
+    }
+    .testimonial-text {
+      font-size: 14px;
+      color: var(--soft-text);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .testimonial-role {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ========================================
+       FAQ
+       ======================================== */
+    .faq { background: var(--bg); }
+    .faq-list {
+      max-width: 740px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: box-shadow var(--ease);
+    }
+    .faq-item:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      background: none;
+      border: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      transition: background var(--ease);
+    }
+    .faq-question:hover { background: var(--surface-2); }
+    .faq-question svg {
+      flex-shrink: 0;
+      color: var(--primary);
+      transition: transform var(--ease);
+    }
+    .faq-item.open .faq-question svg {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 300ms ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      font-size: 14px;
+      color: var(--soft-text);
+      line-height: 1.7;
     }
 
     /* ========================================
@@ -454,7 +632,7 @@
       padding: 60px 40px;
     }
     .cta h2 {
-      font-size: 34px;
+      font-size: clamp(26px, 3.5vw, 34px);
       font-weight: 900;
       letter-spacing: -1px;
       margin-bottom: 14px;
@@ -522,6 +700,7 @@
       display: flex;
       gap: 12px;
       margin-top: 16px;
+      flex-wrap: wrap;
     }
     .footer-social a {
       width: 38px;
@@ -551,6 +730,7 @@
     .footer-bottom-links {
       display: flex;
       gap: 20px;
+      flex-wrap: wrap;
     }
     .footer-bottom-links a {
       color: rgba(255,255,255,.5);
@@ -561,26 +741,52 @@
     /* ========================================
        RESPONSIVE
        ======================================== */
+    @media (max-width: 1024px) {
+      .steps-grid { gap: 28px; }
+      .footer-grid { gap: 32px; }
+    }
+
     @media (max-width: 900px) {
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .hero-stats { gap: 32px; }
+      .steps-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
     }
+
     @media (max-width: 768px) {
       .header-nav { display: none; }
-      .header-actions .btn { display: none; }
+      .header-actions .btn-outline,
+      .header-actions .btn-primary { display: none; }
       .hamburger { display: flex; }
       .section { padding: 60px 0; }
+      .section-subtitle { margin-bottom: 40px; }
       .hero { padding: 130px 0 60px; }
       .hero-stats { gap: 24px; }
       .hero-stat-num { font-size: 26px; }
       .features-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
       .cta-card { padding: 40px 24px; }
     }
+
     @media (max-width: 600px) {
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
-      .hero-actions .btn { width: 100%; }
+      .hero-actions .btn { width: 100%; min-width: 0; }
+      .cta-actions .btn { width: 100%; min-width: 0; }
+      .faq-question { padding: 16px 18px; font-size: 14px; }
+      .faq-answer-inner { padding: 0 18px 16px; }
+      .cta-card { padding: 32px 20px; }
+      .hero { padding: 120px 0 50px; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { max-width: 100%; }
+    }
+
+    @media (max-width: 380px) {
+      .header-logo { font-size: 18px; }
+      .header-logo .logo-icon { width: 34px; height: 34px; font-size: 15px; }
+      .feature-card { padding: 28px 20px; }
+      .testimonial-card { padding: 24px 20px; }
+      .step-card { padding: 32px 20px; }
     }
   </style>
 </head>
@@ -596,7 +802,9 @@
       <nav class="header-nav">
         <a href="#hero">Home</a>
         <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
         <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
       <div class="header-actions">
@@ -614,7 +822,9 @@
     <div class="mobile-nav" id="mobileNav">
       <a href="#hero">Home</a>
       <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
       <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
       @auth
         <a href="{{ url('/dashboard') }}" style="color:var(--primary)">Dashboard</a>
@@ -718,6 +928,42 @@
     </div>
   </section>
 
+  <!-- ========== HOW IT WORKS ========== -->
+  <section class="section how-it-works" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">
+        Get your team up and running in just three simple steps.
+      </p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Create Your Account</h3>
+          <p>
+            Sign up in seconds with your email address. No credit card required —
+            start your free trial immediately.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Invite Your Team</h3>
+          <p>
+            Add team members by email or share an invite link. Set up channels
+            and permissions in minutes.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Start Collaborating</h3>
+          <p>
+            Begin messaging, sharing files, and collaborating in real‑time.
+            Your team will be productive from day one.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== ABOUT ========== -->
   <section class="section about" id="about">
     <div class="container">
@@ -758,7 +1004,7 @@
     </div>
   </section>
 
-  <!-- ========== HIGHLIGHTS / STATISTICS ========== -->
+  <!-- ========== STATISTICS / HIGHLIGHTS ========== -->
   <section class="section highlights">
     <div class="container">
       <h2 class="section-title">Trusted by teams worldwide</h2>
@@ -779,6 +1025,156 @@
         <div class="highlight-item">
           <div class="num">4.9★</div>
           <div class="label">Average Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">What our users say</h2>
+      <p class="section-subtitle">
+        Hear from teams that have transformed their communication with Chat HUB.
+      </p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "Chat HUB completely changed how our remote team communicates. It's intuitive,
+            fast, and the encryption gives us peace of mind. Highly recommend it."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SK</div>
+            <div>
+              <div class="testimonial-name">Sarah Kim</div>
+              <div class="testimonial-role">CTO, TechFlow</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "We evaluated a dozen messaging platforms and Chat HUB was the clear winner.
+            The channel management and file sharing are top‑notch. Game changer for us."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MR</div>
+            <div>
+              <div class="testimonial-name">Alex Rivera</div>
+              <div class="testimonial-role">Product Lead, NexusLabs</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "The built‑in admin controls and security features made it easy for our IT team
+            to roll out across the organisation. Adoption was instant — everyone loves it."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JP</div>
+            <div>
+              <div class="testimonial-name">Jordan Patel</div>
+              <div class="testimonial-role">IT Director, CloudBase</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="section faq" id="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">
+        Got questions? We've got answers. If you need more help, feel free to contact our support team.
+      </p>
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What is Chat HUB?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Chat HUB is a real‑time messaging and collaboration platform designed for modern teams. It combines instant messaging, secure channels, file sharing, and powerful admin controls in one beautifully designed interface.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Is there a free plan available?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes! Chat HUB offers a generous free plan that includes unlimited messaging, up to 10 team members, and 5GB of file storage. No credit card required to get started.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How secure is Chat HUB?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Security is our top priority. Chat HUB uses end‑to‑end encryption for all messages, enterprise‑grade authentication, and complies with GDPR, SOC 2, and HIPAA standards. Your data is encrypted both in transit and at rest.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can I integrate Chat HUB with other tools?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Absolutely. Chat HUB integrates with popular tools like Slack, Trello, Asana, GitHub, GitLab, Jira, and many more. Our open API also allows for custom integrations to fit your team's workflow.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What happens if I exceed my plan limits?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              You'll receive friendly notifications before reaching any limits. You can upgrade your plan at any time with just a few clicks, and your team will experience zero disruption during the transition.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do you offer customer support?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes! All plans include access to our knowledge base and community forum. Paid plans include priority email support, and enterprise plans come with a dedicated account manager and 24/7 phone support.
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -866,16 +1262,16 @@
     </div>
   </footer>
 
-  <!-- ========== MOBILE NAV TOGGLE ========== -->
+  <!-- ========== MOBILE NAV & FAQ TOGGLE ========== -->
   <script>
     (function() {
+      // Mobile nav
       const hamburger = document.getElementById('hamburger');
       const mobileNav = document.getElementById('mobileNav');
       if (hamburger && mobileNav) {
         hamburger.addEventListener('click', function() {
           mobileNav.classList.toggle('open');
         });
-        // Close on link click
         mobileNav.querySelectorAll('a').forEach(function(link) {
           link.addEventListener('click', function() {
             mobileNav.classList.remove('open');
@@ -883,7 +1279,20 @@
         });
       }
     })();
+
+    // FAQ toggle
+    function toggleFaq(btn) {
+      var item = btn.parentElement;
+      var isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(function(el) {
+        el.classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    }
   </script>
 
 </body>
-</html>
+</html>]]>

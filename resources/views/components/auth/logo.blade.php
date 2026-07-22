@@ -5,5 +5,7 @@
     </svg>
   </div>
   <h1>Chat HUB</h1>
-  <p>Welcome back! Please sign in to continue.</p>
+  @if(!isset($hideSubtitle))
+    <p>Secure, real‑time messaging for modern teams.</p>
+  @endif
 </div>
