@@ -15,7 +15,7 @@ class LoginTest extends TestCase
     {
         $response = $this->get('/login');
         $response->assertStatus(200);
-        $response->assertSee('Sign in to Chat HUB');
+        $response->assertSee('Welcome back');
     }
 
     public function test_user_can_login_with_valid_credentials(): void

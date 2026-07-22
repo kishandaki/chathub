@@ -1,14 +1,11 @@
 @extends('layouts.auth')
 
-@section('title', 'Reset Password - Chat HUB')
+@section('title', 'Create Account - Chat HUB')
 
 @section('content')
-<x-auth.card title="Set a new password" subtitle="Create a strong password for your account">
-    <form method="POST" action="{{ route('reset.password') }}" autocomplete="off" class="auth-form">
+<x-auth.card title="Create your account" subtitle="Get started with Chat HUB for free">
+    <form method="POST" action="{{ route('register') }}" autocomplete="off" class="auth-form">
         @csrf
-
-        <input type="hidden" name="token" value="{{ $token }}" />
-        <input type="hidden" name="email" value="{{ $email }}" />
 
         @if($errors->any())
             <div class="alert alert-danger">
@@ -18,24 +15,40 @@
         @endif
 
         <div class="form-field">
+            <label for="name">Full name</label>
+            <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="John Doe"
+                value="{{ old('name') }}"
+                required
+                autofocus
+                autocomplete="name"
+            />
+            <x-auth.validation-error :message="$errors->first('name')" />
+        </div>
+
+        <div class="form-field">
             <label for="email">Email address</label>
             <input
                 type="email"
                 name="email"
                 id="email"
-                value="{{ old('email', $email) }}"
-                readonly
-                disabled
+                placeholder="name@company.com"
+                value="{{ old('email') }}"
+                required
+                autocomplete="email"
             />
+            <x-auth.validation-error :message="$errors->first('email')" />
         </div>
 
         <div class="form-field">
-            <label for="password">New password</label>
+            <label for="password">Password</label>
             <x-auth.password-input
                 name="password"
                 placeholder="Minimum 8 characters"
                 required
-                autofocus
                 autocomplete="new-password"
             />
             <x-auth.validation-error :message="$errors->first('password')" />
@@ -53,9 +66,14 @@
         </div>
 
         <div class="auth-actions">
-            <x-auth.button type="submit" variant="primary" full>Reset Password</x-auth.button>
+            <x-auth.button type="submit" variant="primary" full>Create Account</x-auth.button>
         </div>
     </form>
+
+    <div class="auth-links">
+        <span>Already have an account?</span>
+        <a href="{{ route('login') }}">Sign in</a>
+    </div>
 </x-auth.card>
 
 <x-auth.loader />

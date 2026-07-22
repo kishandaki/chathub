@@ -28,4 +28,24 @@ class AuthPageController extends Controller
     {
         return view('errors.404');
     }
+
+    public function register()
+    {
+        return view('auth.register');
+    }
+
+    public function otpVerify()
+    {
+        return view('auth.otp-verify');
+    }
+
+    public function changePassword()
+    {
+        return view('auth.change-password');
+    }
+
+    public function otpResend(Request $request)
+    {
+        return redirect()->route('otp.verify')->with('status', 'A new code has been sent.');
+    }
 }

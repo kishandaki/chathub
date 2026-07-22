@@ -1,11 +1,9 @@
-<div class="auth-card">
+<div class="auth-header">
   @if(isset($title))
-    <div class="auth-card-head">
-      <h2>{{ $title }}</h2>
-      @isset($subtitle)
-        <p>{{ $subtitle }}</p>
-      @endisset
-    </div>
+    <h1>{{ $title }}</h1>
+    @isset($subtitle)
+      <p>{{ $subtitle }}</p>
+    @endisset
   @endif
-  {{ $slot }}
 </div>
+{{ $slot }}

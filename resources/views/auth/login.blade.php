@@ -3,15 +3,14 @@
 @section('title', 'Login - Chat HUB')
 
 @section('content')
-<x-auth.card title="Sign in to Chat HUB" subtitle="Enter your credentials to access your account">
-    <form method="POST" action="{{ route('login') }}" autocomplete="off">
+<x-auth.card title="Welcome back" subtitle="Sign in to your account to continue">
+    <form method="POST" action="{{ route('login') }}" autocomplete="off" class="auth-form">
         @csrf
 
         @if($errors->any())
             <div class="alert alert-danger">
-                <div class="alert-content">
-                    Invalid email or password. Please try again.
-                </div>
+                <svg class="alert-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                <div class="alert-content">Invalid email or password. Please try again.</div>
             </div>
         @endif
 
@@ -41,28 +40,25 @@
             <x-auth.validation-error :message="$errors->first('password')" />
         </div>
 
-        <div class="form-field" style="flex-direction: row; align-items: center; gap: 10px; margin-top: 4px;">
-            <input
-                type="checkbox"
-                name="remember"
-                id="remember"
-                style="width: 18px; height: 18px; accent-color: var(--primary);"
-                {{ old('remember') ? 'checked' : '' }}
-            />
-            <label for="remember" style="margin: 0; font-weight: 600; font-size: 13px; cursor: pointer;">
-                Remember me for 30 days
-            </label>
+        <div class="form-field">
+            <div class="checkbox-wrapper">
+                <input
+                    type="checkbox"
+                    name="remember"
+                    id="remember"
+                    {{ old('remember') ? 'checked' : '' }}
+                />
+                <label for="remember">Remember me for 30 days</label>
+            </div>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
-            Sign In
-        </button>
+        <div class="auth-actions">
+            <x-auth.button type="submit" variant="primary" full>Sign In</x-auth.button>
+        </div>
     </form>
 
-    <div style="text-align: center; margin-top: 20px; font-size: 13px; color: var(--soft-text);">
-        <a href="{{ route('forgot.password') }}" style="color: var(--primary); text-decoration: none; font-weight: 700;">
-            Forgot your password?
-        </a>
+    <div class="auth-links">
+        <a href="{{ route('forgot.password') }}">Forgot your password?</a>
     </div>
 </x-auth.card>
 

@@ -9,9 +9,14 @@
 </head>
 <body>
   <div class="auth-page">
-    <div class="auth-card">
+    <div class="auth-container">
       @include('components.auth.logo')
-      @yield('content')
+      <main class="auth-main">
+        @yield('content')
+      </main>
+      <div class="auth-footer">
+        <p>&copy; {{ date('Y') }} Chat HUB. All rights reserved.</p>
+      </div>
     </div>
   </div>
   <script src="{{ asset('assets/js/auth.js') }}"></script>

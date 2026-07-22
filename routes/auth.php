@@ -29,6 +29,10 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/session-expired', [AuthPageController::class, 'sessionExpired'])->name('session.expired');
     Route::get('/account-locked', [AuthPageController::class, 'accountLocked'])->name('account.locked');
+    Route::get('/register', [AuthPageController::class, 'register'])->name('register');
+    Route::get('/otp-verify', [AuthPageController::class, 'otpVerify'])->name('otp.verify');
+    Route::post('/otp-verify/resend', [AuthPageController::class, 'otpResend'])->name('otp.resend');
+    Route::get('/change-password', [AuthPageController::class, 'changePassword'])->name('change.password');
     Route::get('/403', [AuthPageController::class, 'forbidden'])->name('forbidden');
     Route::get('/404', [AuthPageController::class, 'notFound'])->name('not-found');
 });
