@@ -12,7 +12,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'account.active' => \App\Http\Middleware\EnsureAccountIsActive::class,
+            'account.not_locked' => \App\Http\Middleware\EnsureAccountIsNotLocked::class,
+            'email.verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
+            'twofactor.verified' => \App\Http\Middleware\EnsureTwoFactorIsVerified::class,
+            'track.activity' => \App\Http\Middleware\TrackUserActivity::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
