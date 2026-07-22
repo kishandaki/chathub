@@ -11,7 +11,6 @@
   <div class="auth-page">
     <div class="auth-card">
       @include('components.auth.logo')
-      @include('components.auth.alert')
       @yield('content')
     </div>
   </div>
