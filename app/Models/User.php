@@ -17,6 +17,31 @@ class User extends Authenticatable
 
     protected $guarded = [];
 
+    public function conversations()
+    {
+        return $this->belongsToMany(Conversation::class, 'chat_conversation_members', 'user_id', 'conversation_id')
+            ->withPivot([
+                'member_role','can_send','can_upload','is_muted','last_read_message_id',
+                'last_read_at','unread_count','encryption_join_version','joined_at','left_at','removed_by',
+            ])
+            ->withTimestamps();
+    }
+
+    public function presence()
+    {
+        return $this->hasOne(ChatUserPresence::class, 'user_id');
+    }
+
+    public function devices()
+    {
+        return $this->hasMany(ChatUserDevice::class, 'user_id');
+    }
+
+    public function notificationPreference()
+    {
+        return $this->hasOne(ChatNotificationPreference::class, 'user_id');
+    }
+
     /**
      * Get the attributes that should be cast.
      *
