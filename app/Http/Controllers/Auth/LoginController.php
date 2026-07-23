@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Services\Auth\AuthService;
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -15,7 +15,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         return $this->auth->attempt($request);
     }

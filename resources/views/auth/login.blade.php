@@ -1,67 +1,38 @@
 @extends('layouts.auth')
 
-@section('title', 'Login - Chat HUB')
-
 @section('content')
-<x-auth.card title="Welcome back" subtitle="Sign in to your account to continue">
-    <form method="POST" action="{{ route('login') }}" autocomplete="off" class="auth-form">
-        @csrf
+<div class="auth-card fade-up">
+  <h1 class="text-2xl font-semibold mb-4">Welcome back</h1>
 
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <svg class="alert-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                <div class="alert-content">Invalid email or password. Please try again.</div>
-            </div>
-        @endif
+  @if (session('status'))
+    <div class="mb-4 rounded-md border border-green-300 bg-green-50 p-3 text-green-800">{{ session('status') }}</div>
+  @endif
 
-        <div class="form-field">
-            <label for="email">Email address</label>
-            <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="name@company.com"
-                value="{{ old('email') }}"
-                required
-                autofocus
-                autocomplete="email"
-            />
-            <x-auth.validation-error :message="$errors->first('email')" />
-        </div>
+  <form method="POST" action="{{ route('login') }}" class="space-y-4">
+    @csrf
 
-        <div class="form-field">
-            <label for="password">Password</label>
-            <x-auth.password-input
-                name="password"
-                placeholder="••••••••"
-                required
-                autocomplete="current-password"
-            />
-            <x-auth.validation-error :message="$errors->first('password')" />
-        </div>
-
-        <div class="form-field">
-            <div class="checkbox-wrapper">
-                <input
-                    type="checkbox"
-                    name="remember"
-                    id="remember"
-                    {{ old('remember') ? 'checked' : '' }}
-                />
-                <label for="remember">Remember me for 30 days</label>
-            </div>
-        </div>
-
-        <div class="auth-actions">
-            <x-auth.button type="submit" variant="primary" full>Sign In</x-auth.button>
-        </div>
-    </form>
-
-    <div class="auth-links">
-        <a href="{{ route('forgot.password') }}">Forgot your password?</a>
+    <div>
+      <label class="mb-1 block text-sm font-medium">Email</label>
+      <input type="email" name="email" value="{{ old('email') }}" required autofocus class="w-full rounded-md border px-3 py-2" />
+      @error('email') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
     </div>
-</x-auth.card>
 
-<x-auth.loader />
-<x-auth.toast />
+    <div>
+      <label class="mb-1 block text-sm font-medium">Password</label>
+      <input type="password" name="password" required class="w-full rounded-md border px-3 py-2" />
+      @error('password') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+    </div>
+
+    <div class="flex items-center justify-between">
+      <label class="flex items-center gap-2 text-sm">
+        <input type="checkbox" name="remember" />
+        <span>Remember me</span>
+      </label>
+
+      <a class="text-sm underline" href="{{ route('password.request') }}">Forgot password?</a>
+    </div>
+
+    <button type="submit" class="w-full rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-800">Sign in</button>
+  </form>
+</div>
 @endsection

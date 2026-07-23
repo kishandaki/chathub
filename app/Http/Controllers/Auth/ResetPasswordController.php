@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\ChangePasswordRequest;
 use App\Services\Auth\PasswordResetService;
 use Illuminate\Http\Request;
 
@@ -18,17 +19,8 @@ class ResetPasswordController extends Controller
         ]);
     }
 
-    public function reset(Request $request)
+    public function reset(ChangePasswordRequest $request)
     {
-        $request->validate([
-            'token' => ['required', 'string'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', 'min:8'],
-        ], [
-            'password.min' => 'Password must be at least 8 characters.',
-            'password.confirmed' => 'Passwords do not match.',
-        ]);
-
         $this->passwords->reset($request->only('email', 'password', 'password_confirmation', 'token'));
 
         return redirect()->route('login')->with('status', 'Your password has been reset. Please sign in.');

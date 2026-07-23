@@ -4,7 +4,7 @@
 
 @section('content')
 <x-auth.card title="Forgot your password?" subtitle="Enter your email and we'll send you a reset link">
-    <form method="POST" action="{{ route('forgot.password') }}" autocomplete="off" class="auth-form">
+        <form method="POST" action="{{ route('password.request') }}" autocomplete="off" class="auth-form">
         @csrf
 
         @if(session('status'))

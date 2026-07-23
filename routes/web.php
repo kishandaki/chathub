@@ -12,6 +12,6 @@ Route::middleware('guest')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware(['auth', 'account.active', 'email.verified', 'twofactor.verified', 'track.activity'])->group(function () {
+Route::middleware('protected')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\ChatHubController::class, 'index'])->name('dashboard');
 });
